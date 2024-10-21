@@ -5,6 +5,7 @@ import 'screens/home_screen.dart';
 import 'services/background_service.dart';
 import 'services/database_service.dart';
 import 'services/weather_api_service.dart';
+import 'core/theme/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,9 +39,7 @@ class MyApp extends StatelessWidget {
       value: weatherProvider,
       child: MaterialApp(
         title: 'Real-Time Weather Monitoring',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: AppTheme.darkThemeMode,
         home: HomeScreen(weatherProvider: weatherProvider),
       ),
     );

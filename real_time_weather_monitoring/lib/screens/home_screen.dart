@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:real_time_weather_monitoring/core/theme/app_pallete.dart';
 import 'package:real_time_weather_monitoring/screens/alert_screen.dart';
 import '../providers/weather_provider.dart';
 import '../widgets/city_weather_card.dart';
@@ -39,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('Real-Time Weather Monitoring'),
         actions: [
           IconButton(
-            icon: const Icon(Icons.search),
+            icon: const Icon(Icons.search, color: AppPallete.whiteColor),
             onPressed: () {
               Navigator.push(
                 context,
@@ -48,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
           IconButton(
-            icon: const Icon(Icons.summarize),
+            icon: const Icon(Icons.summarize, color: AppPallete.whiteColor),
             onPressed: () {
               Navigator.push(
                 context,
@@ -57,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
           IconButton(
-            icon: const Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications, color: AppPallete.whiteColor),
             onPressed: () {
               Navigator.push(
                 context,
@@ -66,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
           IconButton(
-            icon: const Icon(Icons.settings),
+            icon: const Icon(Icons.settings, color: AppPallete.whiteColor),
             onPressed: () {
               Navigator.push(
                 context,
@@ -76,24 +77,38 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: RefreshIndicator(
-        onRefresh: () => widget.weatherProvider.fetchAndStoreWeatherData(),
-        child: Consumer<WeatherProvider>(
-          builder: (context, weatherProvider, child) {
-            if (weatherProvider.currentWeather.isEmpty) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            return ListView.builder(
-              itemCount: weatherProvider.currentWeather.length,
-              itemBuilder: (context, index) {
-                return CityWeatherCard(
-                  weather: weatherProvider.currentWeather[index],
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppPallete.gradient1,
+              AppPallete.gradient2,
+              AppPallete.gradient3,
+            ],
+          ),
+        ),
+        child: RefreshIndicator(
+          onRefresh: () => widget.weatherProvider.fetchAndStoreWeatherData(),
+          child: Consumer<WeatherProvider>(
+            builder: (context, weatherProvider, child) {
+              if (weatherProvider.currentWeather.isEmpty) {
+                return const Center(
+                  child:
+                      CircularProgressIndicator(color: AppPallete.whiteColor),
                 );
-              },
-            );
-          },
+              }
+              return ListView.builder(
+                itemCount: weatherProvider.currentWeather.length,
+                itemBuilder: (context, index) {
+                  return CityWeatherCard(
+                    weather: weatherProvider.currentWeather[index],
+                  );
+                },
+              );
+            },
+          ),
         ),
       ),
     );
