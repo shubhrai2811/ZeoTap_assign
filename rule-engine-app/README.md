@@ -16,14 +16,8 @@ This is a sophisticated 3-tier rule engine application that determines user elig
    pip install -r requirements.txt
    ```
 
-3. Set up environment variables:
-   Create a `.env` file in the backend directory with the following content:
-   ```
-   SUPABASE_URL=your_supabase_url
-   SUPABASE_KEY=your_supabase_api_key
-   ```
 
-4. Run the FastAPI server:
+3. Run the FastAPI server:
    ```
    uvicorn main:app --reload
    ```
@@ -373,8 +367,6 @@ For demonstration purposes, the Supabase credentials are hardcoded in the `main.
 - Optimize rule evaluation performance
 - Add more comprehensive error handling and validation
 
-## Note on Security
-For demonstration purposes, the Supabase credentials are hardcoded. In a production environment, these should be stored securely as environment variables or using a secret management system.
 
 ## Conclusion
 
